@@ -64,6 +64,11 @@ void draw(Texture *texture, Quad *quad, love::math::Transform *transform)
 	getInstance()->draw(texture, quad, transform->getMatrix());
 }
 
+void points(const love::Vector2 *pos, const love::Colorf *cols, size_t amount)
+{
+	getInstance()->points(pos, cols, amount);
+}
+
 void present()
 {
 	getInstance()->present(nullptr);
@@ -353,6 +358,11 @@ void sendTextures(Shader *shader, const std::string &name, std::initializer_list
 
 } // shader
 
+SpriteBatch *newSpriteBatch(Texture *tex, int reserve, vertex::Usage usage)
+{
+	return getInstance()->newSpriteBatch(tex, reserve, usage);
+}
+
 love::Colorf getBackgroundColor()
 {
 	return getInstance()->getBackgroundColor();
@@ -371,6 +381,11 @@ double getDPIScale()
 int getHeight()
 {
 	return getInstance()->getHeight();
+}
+
+float getPointSize()
+{
+	return getInstance()->getPointSize();
 }
 
 int getWidth()
@@ -440,6 +455,11 @@ void setDepthMode()
 void setMeshCullMode(CullMode mode)
 {
 	getInstance()->setMeshCullMode(mode);
+}
+
+void setPointSize(float pz)
+{
+	getInstance()->setPointSize(pz);
 }
 
 void setShader(Shader *shader)

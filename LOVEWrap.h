@@ -389,6 +389,7 @@ namespace graphics
 	void draw(Texture *texture, Quad *quad, float x = 0.0f, float y = 0.0f, float r = 0.0f, float sx = 1.0f, float sy = 1.0f, float ox = 0.0f, float oy = 0.0f, float kx = 0.0f, float ky = 0.0f);
 	void draw(Drawable *drawable, love::math::Transform *transform);
 	void draw(Texture *texture, Quad *quad, love::math::Transform *transform);
+	void points(const love::Vector2 *pos, const love::Colorf *cols, size_t amount);
 	void present();
 	void print(const std::string &text, float x = 0.0f, float y = 0.0f, float r = 0.0f, float sx = 1.0f, float sy = 1.0f, float ox = 0.0f, float oy = 0.0f, float kx = 0.0f, float ky = 0.0f);
 	void print(std::vector<Font::ColoredString> coloredText, float x = 0.0f, float y = 0.0f, float r = 0.0f, float sx = 1.0f, float sy = 1.0f, float ox = 0.0f, float oy = 0.0f, float kx = 0.0f, float ky = 0.0f);
@@ -432,11 +433,13 @@ namespace graphics
 	Mesh *newMesh(const std::vector<Mesh::AttribFormat> &vertexformat, const void *data, size_t datasize, PrimitiveType drawmode, vertex::Usage usage);
 	Shader *newShader(const std::string &content);
 	Shader *newShader(const std::string &vertex, const std::string &pixel);
+	SpriteBatch *newSpriteBatch(Texture *tex, int reservedPoints = 1000, vertex::Usage usage = vertex::USAGE_DYNAMIC);
 	
 	love::Colorf getBackgroundColor();
 	Graphics::BlendMode getBlendMode(Graphics::BlendAlpha &alphaMode);
 	double getDPIScale();
 	int getHeight();
+	float getPointSize();
 	int getWidth();
 	bool isActive();
 
@@ -449,6 +452,7 @@ namespace graphics
 	void setDepthMode(CompareMode mode, bool value);
 	void setDepthMode();
 	void setMeshCullMode(CullMode mode);
+	void setPointSize(float pz);
 	void setShader(Shader *shader = nullptr);
 	void setWireframe(bool enable);
 
