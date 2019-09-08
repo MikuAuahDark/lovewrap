@@ -547,9 +547,29 @@ namespace window
 		return getInstance() != nullptr;
 	}
 
+	inline bool getFullscreen(Window::FullscreenType &fstype)
+	{
+		int w, h;
+		WindowSettings settings;
+		getInstance()->getWindow(w, h, settings);
+		fstype = settings.fstype;
+		return settings.fullscreen;
+	}
+
+	inline bool getFullscreen()
+	{
+		Window::FullscreenType fstype;
+		return getFullscreen(fstype);
+	}
+
 	inline int getVSync()
 	{
 		return getInstance()->getVSync();
+	}
+
+	inline bool setFullscreen(bool f)
+	{
+		return getInstance()->setFullscreen(f);
 	}
 
 	inline bool setMode(int width = 800, int height = 600, WindowSettings *settings = nullptr)
