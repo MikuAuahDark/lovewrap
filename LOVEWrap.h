@@ -496,6 +496,7 @@ namespace image
 	}
 
 	ImageData *newImageData(int width, int height, love::PixelFormat pixfmt = love::PIXELFORMAT_RGBA8);
+	ImageData *newImageData(const std::string &path);
 }
 
 namespace keyboard

@@ -34,5 +34,11 @@ ImageData *newImageData(int width, int height, love::PixelFormat pixfmt)
 	return getInstance()->newImageData(width, height, pixfmt);
 }
 
+ImageData *newImageData(const std::string &path)
+{
+	love::StrongRef<love::filesystem::FileData> fd(lovewrap::filesystem::newFileData(path), love::Acquire::NORETAIN);
+	return getInstance()->newImageData(fd);
+}
+
 } // image
 } // lovewrap
