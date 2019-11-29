@@ -43,5 +43,26 @@ std::string getSaveDirectory()
 	return getInstance()->getSaveDirectory();
 }
 
+FileData *newFileData(const std::string &path)
+{
+	love::StrongRef<love::filesystem::File> f;
+	f.set(getInstance()->newFile(path.c_str()), love::Acquire::NORETAIN);
+
+	if (f->open(File::MODE_READ))
+		return f->read();
+
+	throw love::Exception("Could not open file.");
+}
+
+FileData *newFileData(const void *contents, size_t len, const std::string &filename)
+{
+	return getInstance()->newFileData(contents, len, filename.c_str());
+}
+
+FileData *newFileData(const love::Data *data, const std::string &filename)
+{
+	return getInstance()->newFileData(data->getData(), data->getSize(), filename.c_str());
+}
+
 } // filesystem
 } // love

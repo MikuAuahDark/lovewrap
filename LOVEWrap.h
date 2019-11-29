@@ -32,6 +32,9 @@
 #include "modules/audio/Audio.h"
 #include "modules/audio/Source.h"
 
+/* love.data */
+#include "modules/data/DataModule.h"
+
 /* love.event */
 #include "modules/event/Event.h"
 
@@ -218,6 +221,21 @@ namespace audio
 	 **/
 	void stop(love::audio::Source *source = nullptr);
 }
+
+// love::data namespace
+namespace data
+{
+	using namespace love::data;
+
+	inline DataModule *getInstance()
+	{
+		return love::Module::getInstance<DataModule>(love::Module::M_DATA);
+	}
+
+	std::vector<char> hash(HashFunction::Function func, love::Data *input);
+	std::vector<char> hash(HashFunction::Function func, const void *data, size_t size);
+}
+
 // event namespace doesn't actually provide anything useful
 // in LOVE++ :thinking:
 namespace event
@@ -336,6 +354,9 @@ namespace filesystem
 	 */
 	std::string getRealDirectory(const std::string &filepath);
 	std::string getSaveDirectory();
+	love::filesystem::FileData *newFileData(const std::string &path);
+	love::filesystem::FileData *newFileData(const void *contents, size_t len, const std::string &filename);
+	love::filesystem::FileData *newFileData(const love::Data *data, const std::string &filename);
 	/**
 	 * Sets the source of the game, where the code is present. This is internal function!
 	 * @param source Absolute path to the game's source folder.
